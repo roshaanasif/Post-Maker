@@ -9,6 +9,8 @@ let textarea=document.getElementById("postContent");
 let postBtn=document.getElementById("postButton");
 let welcomingUser=document.getElementById("welcoming");
 let currentUser=JSON.parse(localStorage.getItem("currentUser"));
+let edit=JSON.parse(localStorage.getItem("editpost"));
+
 
 function showToast(message, type = "success") {
   let bgColor =
@@ -27,14 +29,35 @@ function showToast(message, type = "success") {
     backgroundColor: bgColor
   }).showToast();
 }
+
+
 welcomingUser.innerHTML=`<h1 class="text-xl font-semibold  text-gray-800 mb-5">
-     welcome ${currentUser.userName}
-    </h1>`
+         Welcome ${currentUser.userName.toUpperCase()}
+        </h1>`
+    
 
 let info={
-        postId:Date.now(),
-        postedby:currentUser.userName,
-}    
+            postId:Date.now(),
+            postedby:currentUser.userName,
+            userId:currentUser.userId
+    }    
+
+    
+// logout
+let logout=(()=>{
+  currentUser=[];
+  localStorage.removeItem("userPosts");
+  localStorage.setItem("currentUser",JSON.stringify(currentUser));
+
+  setTimeout(() => {
+      location.href="../authentication/login/login.html"
+  }, 2000);
+
+})
+
+
+
+
 
 // bg colour
 let setBackgroundColor=(colour=>{
@@ -125,8 +148,8 @@ let posts=[];
 let Allposts=JSON.parse(localStorage.getItem("AllPosts"))||[];
 
 
+let userPosts=JSON.parse(localStorage.getItem("userPosts"))||[];
 let Post=(()=>{
-let userPosts=[];
  console.log("yes");
  
     let textarea=document.getElementById("postContent").innerHTML;

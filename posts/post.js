@@ -5,8 +5,20 @@ let currentUser=JSON.parse(localStorage.getItem("currentUser"));
 
 
 
-allPosts.forEach(item => {
 
+let renderAllPosts=(()=>{
+if (allPosts==null ||allPosts.length==0){
+   postsContainer.innerHTML+=`  <div class="bg-white w-full shadow-md  rounded-lg  mt-4 p-4 space-y-3">
+      <div class="flex items-center justify-center gap-3">
+          <h3 class=" font-semibold">No posts Available</h3>
+        </div>
+      </div>`
+
+ 
+}
+
+allPosts.forEach(item => {
+// postsContainer="";
   let newContent=item.content;   
   let gettingInitials=item.postedby.split('');
  
@@ -35,7 +47,7 @@ allPosts.forEach(item => {
           ${gettingInitials[0].toUpperCase()}
         </div>
         <div>
-          <h3 class="font-semibold">${currentUser.userName}</h3>
+          <h3 class="font-semibold">${item.postedby}</h3>
           <p class="text-xs text-gray-500">${item.postTime}</p>
         </div>
       </div>
@@ -48,12 +60,16 @@ allPosts.forEach(item => {
 
 
       <div class="flex justify-between pt-2 border-t text-sm text-gray-600">
-        <button class="hover:text-blue-600 font-medium">👍 Like</button>
-        <button class="hover:text-blue-600 font-medium">💬 Comment</button>
-        <button class="hover:text-blue-600 font-medium">↗ Share</button>
+        <button  onclick="addLikes()" class="hover:text-blue-600 font-medium"><i class="fa-regular fa-thumbs-up"></i> Like</button>
+        <button class="hover:text-blue-600 font-medium"><i class="fa-solid fa-comment-dots"></i> Comment</button>
+        <button class="hover:text-blue-600 font-medium"><i class="fa-solid fa-up-right-from-square"></i> Share</button>
       </div>
     </div>`
 });
+
+});
+
+renderAllPosts();
 
 
 
