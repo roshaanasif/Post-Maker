@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <!-- Tailwind CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="font-sans bg-gray-200  flex justify-center items-center min-h-screen">
+
+  <!-- Main Container -->
+  <div class="bg-white p-5 rounded-xl shadow-md w-[450px] h-full text-center">
+
+
+    <h1 class="text-2xl  text-center  font-semibold text-gray-800 mb-5">
+         Edit Post
+    </h1>
+
+    <!-- Textarea -->
+    <div  contenteditable="true"
+      id="editpostContent"
+      placeholder="Write something to post..."
+      class="w-[28vw] h-20 p-2 border overflow-hidden text-start border-gray-300 rounded-md text-base mb-5 resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+    ></div>
+
+    <!-- Toolbar -->
+    <div class="mb-3 flex justify-center flex-wrap gap-2">
+
+      <button
+        id="btn-disable"
+        onclick="formatEditText('bold')"
+        class="w-[50px] px-2 py-1 border-2 border-gray-800 rounded-md bg-gray-100 hover:bg-gray-200"
+      >
+        <b>B</b>
+      </button>
+
+      <button
+        id="btn-disable1"
+        onclick="formatEditText('italic')"
+        class="w-[50px] px-2 py-1 border-2 border-gray-800 rounded-md bg-gray-100 hover:bg-gray-200"
+      >
+        <i>I</i>
+      </button>
+
+      <button
+        id="btn-disable2"
+        onclick="formatEditText('underline')"
+        class="w-[50px] px-2 py-1 border-2 border-gray-800 rounded-md bg-gray-100 hover:bg-gray-200"
+      >
+        <u>U</u>
+      </button>
+
+      <button
+        id="normal"
+        onclick="formatEditText('reset')"
+        class="w-[80px] px-2 py-1 border-2 border-gray-800 rounded-md bg-gray-100 hover:bg-gray-200"
+      >
+        Reset
+      </button>
+
+      <select
+        id="fontsize"
+        onchange="changeFontSize()"
+        class="w-[110px] px-2 py-1 border-2 border-gray-800 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer"
+      >
+        <option value="">Font Size</option>
+        <option value="12">12px</option>
+        <option value="16">16px</option>
+        <option value="20">20px</option>
+        <option value="24">24px</option>
+      </select>
+    </div>
+
+    <!-- Color Options -->
+    <div class="mb-5">
+
+      <h3 class="mb-3 font-medium">Choose a Background Color:</h3>
+
+      <div class="flex justify-center items-center gap-3">
+
+        <button class="w-10 h-10 rounded-full hover:scale-110 transition"
+          style="background:#ffcccc"
+          onclick="setBackgroundColor('#ffcccc')">
+        </button>
+
+        <button class="w-10 h-10 rounded-full hover:scale-110 transition"
+          style="background:#ccffcc"
+          onclick="setBackgroundColor('#ccffcc')">
+        </button>
+
+        <button class="w-10 h-10 rounded-full hover:scale-110 transition"
+          style="background:#ccccff"
+          onclick="setBackgroundColor('#ccccff')">
+        </button>
+
+        <button class="w-10 h-10 rounded-full hover:scale-110 transition"
+          style="background:#ffffcc"
+          onclick="setBackgroundColor('#ffffcc')">
+        </button>
+
+        <button class="w-10 h-10 rounded-full hover:scale-110 transition"
+          style="background:#ffccff"
+          onclick="setBackgroundColor('#ffccff')">
+        </button>
+
+        <input
+          type="color"
+          id="customColor"
+          onchange="setCustomColor()"
+          class="w-14 h-10 border-2 border-violet-600 rounded-md cursor-pointer"
+        />
+      </div>
+    </div>
+
+    <!-- Post Button -->
+
+    <div class="w-full px-5 py-2 flex flex-col">
+        <button
+          onclick="EditPost()"
+          class="bg-green-600 text-white w-full py-2 rounded-md text-base hover:bg-green-700 transition">
+          Edit
+        </button>
+        
+        <a id="veiwpostButton" href="../myposts/index.html" class="bg-blue-600 text-white mt-4 w-full py-2 rounded-md text-base hover:bg-blue-700 transition" >
+          cancel
+      </a>
+    </div>
+    
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
